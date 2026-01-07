@@ -1,15 +1,38 @@
-# 1. Define the "Skill" (Method)
-def check_status(agent_name, status)
-  puts "Checking status for #{agent_name}..."
+class Product
+    attr_reader :name, :price, :stock_qty
+  
+     # 1. The "Setup" (Constructor)
+  
+  # This runs automatically when you create a NEW agent.
+  def initialize(name, price, stock_qty)
+    @name = name      # The '@' makes it a permanent label for THIS agent
+    @price = price
+    @stock_qty = stock_qty
+  end   
 
-  if status == "Ready"
-    puts "System Green. Launching mission!"
-  else
-    puts "Standby. Agent is not ready."
+  # 2. A Logic Method
+  def check_stock
+    puts "Checking #{@name} stock quantity..."
+    if @stock_qty > 0
+      puts "#{@name} is in stock ($#{@price}). Qty: #{@stock_qty}"
+    else
+      puts "OUT OF STOCK: #{@name}"
+    end
   end
 end
 
-# 2. Use the Skill (Call the Method)
-check_status("Enzo", "Ready")
-check_status("Husky-1", "Sleeping")
-check_status("Husky-2", "Ready")
+# --- The Main Logic ---
+
+# Array of products
+products = [
+  Product.new("Laptop",1000,5),
+  Product.new("Mouse", 20,0),
+  Product.new("Monitor",200,10)
+]
+
+# Ask them to do things
+# The Loop (Iterate)
+products.each do |product|
+  puts "\n--- Stock check for #{product.name}  ---"
+  product.check_stock
+end 
