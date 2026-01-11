@@ -1,4 +1,5 @@
 class Product
+    attr_accessor :name, :price, :stock_qty
     attr_reader :name, :price, :stock_qty
   
      # 1. The "Setup" (Constructor)
